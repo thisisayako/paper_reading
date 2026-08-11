@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/scripts/check_bibtex.py\" 2>/dev/null || true",
+            "timeout": 30,
+            "statusMessage": "BibTeXの状態を確認中"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -63,6 +63,15 @@ SI（supporting information）未入手：本文が参照する Table S1（分�
   3. gendered wording（先行研究でジェンダー・ステレオタイプと結びつくと同定された語。男性語＝challenging, independent, adventurous／女性語＝responsible, organized, thorough）
 - 感度分析：実質的に不在。 審査委員会の性別構成が評価・採択率と無関連であることの確認（SI Text・Fig. S1、委員の平均32.6%が女性）のみが唯一の頑健性検討
 
+- 実施した分析（結果の小見出しと対応）：
+  - 分析1：審査段階ごとの申請者・採択者の男女構成と採択率（χ²検定）→ Fig. 1
+  - 分析2：再申請者に限定した採択率の男女比較 → Table S2
+  - 分析3：予備選考の評価スコアの男女比較（一元配置分散分析）→ 図表なし（本文の記述のみ）
+  - 分析4：面接段階の評価基準別の委員会評価の男女比較 → Fig. 2
+  - 分析5：分野別の申請数・採択数 → Fig. 3
+  - 分析6：gender-exclusive language の指標（t検定）→ Fig. 4
+  - 分析7：gendered wording の指標（t検定）→ Fig. 5
+
 ## 結果・考察
 
 ### 全体の結果・考察
@@ -103,7 +112,7 @@ SI（supporting information）未入手：本文が参照する Table S1（分�
 
 なお、Table S1・Table S2・Fig. S1 は未入手であり、分野別の主張と委員会構成の分析を本要約では検証していない。分野別の主張が Table S1 のみに依拠している以上、この未入手は本要約の限界として重大。
 
-### Fig. 1：審査段階ごとの男女の推移
+### 分析1：審査段階ごとの男女の推移（Fig. 1）
 
 結果
 
@@ -125,7 +134,7 @@ SI（supporting information）未入手：本文が参照する Table S1（分�
 
 (5) 効果量は極めて小さい。 Cramer's V = 0.04。採択率の差 2.8ポイントを、著者は "compelling evidence of gender bias"（考察部冒頭）と表現する。この修辞と効果量の乖離は本論文全体の特徴。
 
-### 再申請者の分析（Table S2）
+### 分析2：再申請者の分析（Table S2）
 
 結果
 
@@ -145,7 +154,7 @@ SI（supporting information）未入手：本文が参照する Table S1（分�
 
 (3) 統計的検出力の非対称性。 「再申請率に男女差なし（P = 0.53）」「再申請者では採択率が等しい」はいずれも N ≈ 975 以下の帰無結果であり、「差がないことの証明」ではない。ただしこれは著者の主張を弱める方向の帰無結果であるため、著者がこれを「同等」と読む一方で「提案の質」の帰無結果も「同等」と読んでいる点は、少なくとも一貫している。
 
-### 予備選考の評価
+### 分析3：予備選考の評価（図表なし、本文の記述）
 
 結果
 
@@ -161,7 +170,7 @@ SI（supporting information）未入手：本文が参照する Table S1（分�
 
 (4) df = 2,388 は申請総数 2,823 と一致せず、435件の欠落について原文は説明していない。 予備選考スコアを持たない申請が存在するのか、リストワイズ除外なのか、判別不能。
 
-### Fig. 2：面接段階の評価基準別の委員会評価
+### 分析4：面接段階の評価基準別の委員会評価（Fig. 2）
 
 結果
 
@@ -188,7 +197,7 @@ SI（supporting information）未入手：本文が参照する Table S1（分�
 
 (5) 業績データの不在が決定的。 著者自身が脚注で "Applicants' track record data were not available for analysis" と認め、考察部で「オランダのキャリア初期研究者の生産性（論文数・被引用数）は男女で同等（引用文献35 = van Arensbergen et al. 2012）だから問題ない」と反論する。しかし、「研究者の質」は業績で評価される基準そのものであり、その基準の評価差を論じる論文が業績を統制できていないのは、欠測変数として中心的。しかも van Arensbergen et al. (2012) の主張は要約者が原典で未確認の孫引きであり、要確認事項とする。加えて、母集団平均が同等であることは、Veni に申請する部分集団で同等であることを含意しない。
 
-### Fig. 3：分野別の申請数・採択数
+### 分析5：分野別の申請数・採択数（Fig. 3）
 
 結果
 
@@ -206,7 +215,7 @@ SI（supporting information）未入手：本文が参照する Table S1（分�
 
 (5) Fig. 3 の9分野：Physics／Chemical sciences／Physical sciences／Interdisciplinary／Technical sciences／Humanities／Earth and Life sciences／Medical sciences／Social sciences。Albers 要約が記載する分野数（9）と一致。
 
-### Fig. 4：gender-exclusive language
+### 分析6：gender-exclusive language（Fig. 4）
 
 結果
 
@@ -229,7 +238,7 @@ df = 52 は「53文書 − 1」と厳密に一致する（独立2群なら N = d
 
 (4) 検算で整合した項目：η²p = 2F/(2F+df2) = 2×2.43/(2×2.43+50) = 0.0886 ≈ 0.09 ✓／χ²(2) = 11.24 → P = 0.0036 ≈ 0.004 ✓／V = sqrt(11.24/86) = 0.362 ≈ 0.36 ✓（N = 86 と整合）／86 × 0.384 = 33.0 文書が政策に言及 → 86 − 33 = 53 文書が gender-exclusive の分析対象となり、脚注 †† の記述と完全に整合 ✓。この一連の検算により、86文書・53文書という構成は確定的に裏づけられる。
 
-### Fig. 5：gendered wording
+### 分析7：gendered wording（Fig. 5）
 
 結果
 

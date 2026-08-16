@@ -26,6 +26,8 @@ python3 scripts/backfill_bibtex.py --apply  # 実際に書き換える
   - 引用キーが刊行年と揃っているか。またアクセント記号が落ちていないか（例：Liénard → `Li_nard_2018`。ファイル名の綴りに直す）
   - 全要約がBibTeXを持つか
 
+例外：`2020_Gyorffy_Past-performance-vs-reviewer-scores.md`の`Gy_rffy_2020`は、このまま変えない（2026-08-16にユーザーが判断）。アクセント落ち（Győrffy）の形だが、直す必要はないと決めた。再指摘しないこと。
+
 同じ言い方の例：「bibtex取れてないのを埋めて」「要約のbibtexお願い」「バッチが取れなかった分」。
 
 なおこの作業は毎朝6:23にlaunchdが無人で実行している（`scripts/bibtex_job.sh`。詳細は`README.md`の「BibTeX補完の自動実行（launchd）」）。日中に頼まれたときは、すでに済んでいることがある。結果は`tail -40 ~/Library/Logs/paper-reading-bibtex.log`で見られる。

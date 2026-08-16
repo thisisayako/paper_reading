@@ -22,6 +22,7 @@
 | `scripts/doi2bib.py` | DOIからBibTeXを取得する。`### BibTeX`を空にしないために使う |
 | `scripts/backfill_bibtex.py` | 空のBibTeXをまとめて埋める。`--apply`で書き換え |
 | `scripts/check_bibtex.py` | 空のBibTeXと年の相違を検査する。書き換えはしない |
+| `scripts/bibtex_job.sh` | 毎朝6:23にlaunchdから呼ばれ、必要なときだけ`claude -p`でBibTeXを埋める |
 | `CLAUDE.md` | Claude Codeへの口頭依頼の対応表 |
 | `.claude/settings.json` | SessionStartフック。開始時に`check_bibtex.py`を走らせる |
 | `夜間バッチ指示.md` | Claude Desktopのスケジュール済みタスクに貼る本文。中身は本ファイルへのポインタだけ |
@@ -75,6 +76,36 @@ BibTeXについては、夜間バッチの実行環境（Claude Desktop）から
 - 埋められる空が1件でもあれば、バッチの最終報告の冒頭に「★BibTeXが空の要約N件。Claude Codeで`python3 scripts/backfill_bibtex.py --apply`を実行して埋めること」と書く。ユーザーがこの1行を見て次の作業を判断する
 
 空のまま残った分は、ネットワークに到達できる環境（Claude Code）で後から一括で埋める。`python3 scripts/backfill_bibtex.py`が差分を表示し、`--apply`を付けると書き換える。対象は「取得できず」の注記があるか`@`エントリを持たない要約に限られ、本文には触れない。
+
+## BibTeX補完の自動実行（launchd）
+
+上の「後から一括で埋める」を、毎朝6:23に無人で走らせている（2026-08-16に設定）。夜間バッチが空のまま残したBibTeXを、翌朝ユーザーが起きる前に埋めておくための仕掛け。
+
+| ファイル | 役割 |
+|---|---|
+| `scripts/bibtex_job.sh` | 実体。まず`check_bibtex.py`を走らせ、対応が要るときだけ`claude -p`を起動する |
+| `~/Library/LaunchAgents/com.ayako.paper-reading.bibtex.plist` | 起動時刻の設定。リポジトリ外なのでgit管理されない |
+| `~/Library/Logs/paper-reading-bibtex.log` | 実行ログ。1MBを超えると末尾256KBまで切り詰める |
+
+段構えにしてある。`check_bibtex.py`が「対応の要る項目なし」と言った日は`claude -p`を起動しないので、トークンを消費しない。起動する場合も、渡すプロンプトは`CLAUDE.md`の「「bibtexを埋めて」と言われたら」節を指すだけで、手順そのものは書いていない。手順を変えるときは`CLAUDE.md`を直せばよく、スクリプトは書き換えなくてよい（`夜間バッチ指示.md`と同じ考え方）。
+
+無人実行なので、呼ばれたClaudeには次を守らせている。
+
+- gitのcommit・pushをしない。書き換えは作業ツリーに残し、朝ユーザーが`git diff`で確かめる
+- 判断に迷う点（年の相違でどちらが正しいか、DOIのない要約など）は勝手に決めず、未処理のままログの報告に挙げる
+- 使えるツールは`Read,Grep,Glob,Edit,Bash(python3:*),Bash(git status:*),Bash(git diff:*)`に限る
+
+運用コマンド。
+
+```bash
+tail -40 ~/Library/Logs/paper-reading-bibtex.log            # 結果を見る
+launchctl kickstart gui/$(id -u)/com.ayako.paper-reading.bibtex   # 今すぐ試す
+launchctl print gui/$(id -u)/com.ayako.paper-reading.bibtex       # 状態を見る
+launchctl bootout gui/$(id -u)/com.ayako.paper-reading.bibtex     # 止める
+launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.ayako.paper-reading.bibtex.plist  # 入れ直す
+```
+
+時刻を変えるときはplistの`StartCalendarInterval`を書き換え、`bootout`してから`bootstrap`し直す。スクリプト（`bibtex_job.sh`）だけの変更なら入れ直しは要らない。実行時刻にMacがスリープしていた場合、launchdは復帰時に一度だけ遅れて実行する。
 
 バッチ固有の制約は次のとおり。文体・書式・粒度は後続の「論文要約の基本方針」と「論文要約の構成と粒度」に従う。
 

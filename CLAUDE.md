@@ -28,6 +28,8 @@ python3 scripts/backfill_bibtex.py --apply  # 実際に書き換える
 
 同じ言い方の例：「bibtex取れてないのを埋めて」「要約のbibtexお願い」「バッチが取れなかった分」。
 
+なおこの作業は毎朝6:23にlaunchdが無人で実行している（`scripts/bibtex_job.sh`。詳細は`README.md`の「BibTeX補完の自動実行（launchd）」）。日中に頼まれたときは、すでに済んでいることがある。結果は`tail -40 ~/Library/Logs/paper-reading-bibtex.log`で見られる。
+
 ## 「キューを整理して」と言われたら
 
 `要約キュー.md`は夜間バッチが毎回読むので、肥大させない。メモは1行、所見の正本は`論文要約/`配下の要約md、履歴は`処理ログ.md`。詳細は`README.md`の「夜間バッチの手順」。
